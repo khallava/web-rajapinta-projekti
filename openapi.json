@@ -1,0 +1,163 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "User API",
+    "description": "Tämä API mahdollistaa käyttäjien hallinnan.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/api/v1/user": {
+      "get": {
+        "summary": "Hakee kaikki käyttäjät",
+        "operationId": "getUsers",
+        "responses": {
+          "200": {
+            "description": "Lista kaikista käyttäjistä",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "username": {
+                        "type": "string"
+                      },
+                      "password": {
+                        "type": "string"
+                      },
+                      "age": {
+                        "type": "integer"
+                      },
+                      "role": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Luo uusi käyttäjä",
+        "operationId": "createUser",
+        "requestBody": {
+          "description": "Käyttäjän tiedot",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "age": {
+                    "type": "integer"
+                  },
+                  "role": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Käyttäjä luotu",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "username": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    },
+                    "age": {
+                      "type": "integer"
+                    },
+                    "role": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Virheellinen pyyntö"
+          }
+        }
+      },
+      "put": {
+        "summary": "Päivittää käyttäjän tiedot",
+        "operationId": "updateUser",
+        "requestBody": {
+          "description": "Päivitetyt käyttäjän tiedot",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "age": {
+                    "type": "integer"
+                  },
+                  "role": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Käyttäjä päivitetty"
+          },
+          "400": {
+            "description": "Virheellinen pyyntö"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Poistaa käyttäjän",
+        "operationId": "deleteUser",
+        "responses": {
+          "200": {
+            "description": "Käyttäjä poistettu"
+          },
+          "404": {
+            "description": "Käyttäjää ei löydy"
+          }
+        }
+      }
+    }
+  }
+}
